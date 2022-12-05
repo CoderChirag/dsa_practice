@@ -47,10 +47,6 @@ class Solution{
         }
         
         String res = "";
-        // for(int i=0; i<2*n+1; i++){
-        //     System.out.print(LPS[i] + " ");
-        // }
-        // System.out.print(maxLen + " " + maxIndex + " ");
         for(int i=0; i<maxLen; i++){
             res += S.charAt(i+maxIndex);
         }
