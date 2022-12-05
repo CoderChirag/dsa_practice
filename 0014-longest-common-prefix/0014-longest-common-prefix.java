@@ -13,6 +13,7 @@ class Solution {
             }
             res += strs[0].charAt(i);
         }
+//          return res;
         return res;
     }
 }
