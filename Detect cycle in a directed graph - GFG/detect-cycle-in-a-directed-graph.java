@@ -29,31 +29,56 @@ class DriverClass {
 // } Driver Code Ends
 
 
-/*Complete the function below*/
+// DFS Based Approach
+// class Solution {
+//     // Function to detect cycle in a directed graph.
+    
+//     public boolean dfs(ArrayList<ArrayList<Integer>> adj, int i, boolean[] vis, boolean[] recStack){
+//         vis[i] = true;
+//         recStack[i] = true;
+//         for(int e : adj.get(i)){
+//             if(!vis[e] && dfs(adj, e, vis, recStack)) return true;
+//             else if(recStack[e]) return true;
+//         }
+//         recStack[i] = false;
+//         return false;
+//     }
+    
+//     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+//         // code here
+//         boolean vis[] = new boolean[V];
+//         boolean recStack[] = new boolean[V];
+//         for(int i=0; i<V; i++){
+//             if(!vis[i]){
+//                 if(dfs(adj, i, vis, recStack)) return true;
+//             }
+//         }
+//         return false;
+//     }
+// }
 
+//  BFS Based Approach
 class Solution {
     // Function to detect cycle in a directed graph.
-    
-    public boolean dfs(ArrayList<ArrayList<Integer>> adj, int i, boolean[] vis, boolean[] recStack){
-        vis[i] = true;
-        recStack[i] = true;
-        for(int e : adj.get(i)){
-            if(!vis[e] && dfs(adj, e, vis, recStack)) return true;
-            else if(recStack[e]) return true;
-        }
-        recStack[i] = false;
-        return false;
-    }
-    
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
         // code here
-        boolean vis[] = new boolean[V];
-        boolean recStack[] = new boolean[V];
-        for(int i=0; i<V; i++){
-            if(!vis[i]){
-                if(dfs(adj, i, vis, recStack)) return true;
+        int cnt = 0;
+        int indegree[] = new int[V];
+        ArrayDeque<Integer> q = new ArrayDeque<>();
+        for(int i=0; i<V; i++)
+            for(int j=0; j<adj.get(i).size(); j++)
+                indegree[adj.get(i).get(j)]++;
+        for(int i=0; i<V; i++)
+            if(indegree[i] == 0) q.offer(i);
+        
+        while(!q.isEmpty()){
+            cnt++;
+            int s = q.poll();
+            for(int e : adj.get(s)){
+                indegree[e]--;
+                if(indegree[e] == 0) q.offer(e);
             }
         }
-        return false;
+        return cnt != V;
     }
 }
