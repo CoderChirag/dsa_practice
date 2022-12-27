@@ -52,7 +52,45 @@ class DriverClass
 // } Driver Code Ends
 
 
-// Time Complexity: O(V^2)
+// Time Complexity: O(V*(V + V)) ~ O(V^2)
+// class Solution
+// {
+//     //Function to find the shortest distance of all the vertices
+//     //from the source vertex S.
+//     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
+//     {
+//         // Write your code here
+//         int dist[] = new int[V];
+//         boolean fin[] = new boolean[V];
+//         Arrays.fill(dist, Integer.MAX_VALUE);
+//         dist[S] = 0;
+//         for(int i=0; i<V; i++){
+//             int u = -1;
+//             for(int j=0; j<V; j++){
+//                 if(!fin[j] && (u == -1 || dist[j] < dist[u])) u = j;
+//             }
+//             for(ArrayList<Integer> ele : adj.get(u)){
+//                 dist[ele.get(0)] = Math.min(dist[ele.get(0)], dist[u] + ele.get(1));
+//             }
+//             fin[u] = true;
+//         }
+//         return dist;
+//     }
+// }
+
+class Pair implements Comparable<Pair>{
+    int dist, node;
+    Pair(int dist, int node){
+        this.dist = dist;
+        this.node = node;
+    }
+    
+    @Override
+    public int compareTo(Pair p){
+        return Integer.compare(this.dist, p.dist);
+    }
+}
+
 class Solution
 {
     //Function to find the shortest distance of all the vertices
@@ -62,17 +100,22 @@ class Solution
         // Write your code here
         int dist[] = new int[V];
         boolean fin[] = new boolean[V];
+        PriorityQueue<Pair> q = new PriorityQueue<>();
+        
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[S] = 0;
-        for(int i=0; i<V; i++){
-            int u = -1;
-            for(int j=0; j<V; j++){
-                if(!fin[j] && (u == -1 || dist[j] < dist[u])) u = j;
+        q.offer(new Pair(0, S));
+        while(!q.isEmpty()){
+            Pair p = q.poll();
+            if(!fin[p.node]){
+                for(ArrayList<Integer> ele : adj.get(p.node)){
+                    if(!fin[ele.get(0)] && dist[ele.get(0)] > p.dist + ele.get(1)){
+                        dist[ele.get(0)] =  p.dist + ele.get(1);
+                        q.offer(new Pair(ele.get(1)+p.dist, ele.get(0)));
+                    }
+                }
             }
-            for(ArrayList<Integer> ele : adj.get(u)){
-                dist[ele.get(0)] = Math.min(dist[ele.get(0)], dist[u] + ele.get(1));
-            }
-            fin[u] = true;
+            fin[p.node] = true;
         }
         return dist;
     }
