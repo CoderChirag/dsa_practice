@@ -91,6 +91,7 @@ class Pair implements Comparable<Pair>{
     }
 }
 
+// Time Complexity: O(E*logV) (Explained below)
 class Solution
 {
     //Function to find the shortest distance of all the vertices
@@ -105,13 +106,13 @@ class Solution
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[S] = 0;
         q.offer(new Pair(0, S));
-        while(!q.isEmpty()){
-            Pair p = q.poll();
+        while(!q.isEmpty()){ // Running O(V) times
+            Pair p = q.poll(); // O(logV) Work
             if(!fin[p.node]){
-                for(ArrayList<Integer> ele : adj.get(p.node)){
-                    if(!fin[ele.get(0)] && dist[ele.get(0)] > p.dist + ele.get(1)){
+                for(ArrayList<Integer> ele : adj.get(p.node)){ // Running k times, where k = no. of edges the current vertex is having
+                    if(!fin[ele.get(0)] && dist[ele.get(0)] > p.dist + ele.get(1)){ // So overall the outer and this loop combined would be running 2E Times
                         dist[ele.get(0)] =  p.dist + ele.get(1);
-                        q.offer(new Pair(ele.get(1)+p.dist, ele.get(0)));
+                        q.offer(new Pair(ele.get(1)+p.dist, ele.get(0))); // O(logV)
                     }
                 }
             }
