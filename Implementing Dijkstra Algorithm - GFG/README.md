@@ -9,7 +9,7 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong></span>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong></span>
 <span style="font-size:18px"><strong>V </strong>= 2
 <strong>adj [] </strong>=<strong> </strong>{{{1, 9}}, {{0, 9}}}
 <strong>S </strong>= 0</span>
@@ -20,13 +20,13 @@
 <span style="font-size:18px">The source vertex is 0. Hence, the shortest 
 distance of node 0 is 0 and the shortest 
 distance from node 1 is 9.</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 V </strong>= 3, <strong>E</strong> = 3
 <strong>adj</strong> = {{{1, 1}, {2, 6}}, {{2, 3}, {0, 1}}, {{1, 3}, {0, 6}}}</span>
 <span style="font-size:18px"><strong>S </strong>= 2</span>
@@ -39,7 +39,7 @@ V </strong>= 3, <strong>E</strong> = 3
 whereas the path 2-0 has a distance of 6. So,
 the Shortest path from 2 to 0 is 4.
 The shortest distance from 0 to 1 is 1 .</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 
