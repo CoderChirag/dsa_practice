@@ -49,31 +49,70 @@ class DriverClass
 // User function Template for Java
 
 // Time Complexity: O(V*(V + V)) ~ O(V^2)
+// class Solution
+// {
+//     //Function to find sum of weights of edges of the Minimum Spanning Tree.
+//     static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
+//     {
+//         // Add your code here
+//         int weights[] = new int[V];
+//         Arrays.fill(weights, Integer.MAX_VALUE);
+//         weights[0] = 0;
+//         int res = 0;
+//         boolean included[] = new boolean[V];
+//         for(int i=0; i<V; i++){
+//             int u = -1;
+//             for(int j=0; j<V; j++){
+//                 if(!included[j] && (u == -1 || weights[j] < weights[u] ) ){
+//                     u = j;
+//                 }
+//             }
+//             for(ArrayList<Integer> e : adj.get(u)){
+//                 int v = e.get(0), w = e.get(1);
+//                 if(!included[v] && weights[v] > w)
+//                     weights[v] = w;
+//             }
+//             included[u] = true;
+//             res += weights[u];
+//         }
+//         return res;
+//     }
+// }
+
+class Pair implements Comparable<Pair>{
+    int weight, node;
+    Pair(int w, int n){
+        weight = w;
+        node = n;
+    }
+    
+    @Override
+    public int compareTo(Pair p){
+        return Integer.compare(this.weight, p.weight);
+    }
+}
+// Time Complexity: O((V+E)*logV) ~ O(V^2*logV) if graph is complete and O(E*logV) in when graph is not complete 
 class Solution
 {
     //Function to find sum of weights of edges of the Minimum Spanning Tree.
     static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
     {
         // Add your code here
-        int weights[] = new int[V];
-        Arrays.fill(weights, Integer.MAX_VALUE);
-        weights[0] = 0;
-        int res = 0;
+        PriorityQueue<Pair> q = new PriorityQueue<>();
         boolean included[] = new boolean[V];
-        for(int i=0; i<V; i++){
-            int u = -1;
-            for(int j=0; j<V; j++){
-                if(!included[j] && (u == -1 || weights[j] < weights[u] ) ){
-                    u = j;
+        int res = 0;
+        q.offer(new Pair(0, 0));
+        while(!q.isEmpty()){
+            Pair u = q.poll();
+            if(!included[u.node]){
+                for(ArrayList<Integer> e : adj.get(u.node)){
+                    int v = e.get(0), w = e.get(1);
+                    if(!included[v])
+                        q.offer(new Pair(w, v));
                 }
+                res += u.weight;
+                included[u.node] = true;
             }
-            for(ArrayList<Integer> e : adj.get(u)){
-                int v = e.get(0), w = e.get(1);
-                if(!included[v] && weights[v] > w)
-                    weights[v] = w;
-            }
-            included[u] = true;
-            res += weights[u];
         }
         return res;
     }
