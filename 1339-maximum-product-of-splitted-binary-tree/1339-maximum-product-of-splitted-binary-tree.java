@@ -14,27 +14,27 @@
  * }
  */
 class Solution {
-    private long res;
-    private int MOD = 1000000007;
+    int MOD = 1_000_000_007;
+    long res = 0L;
     
-    private long treeSum(TreeNode root){
+    public long sum(TreeNode root){
         if(root == null) return 0;
-        return root.val + treeSum(root.left) + treeSum(root.right);
+        return sum(root.left) + sum(root.right) + root.val;
     }
     
-    private long subtreeSum(TreeNode root, long treeSum){
+    public long maxProductRec(TreeNode root, long sum){
         if(root == null) return 0;
-        long ls = subtreeSum(root.left, treeSum);
-        long rs = subtreeSum(root.right, treeSum);
-        long a = (treeSum-ls)*ls;
-        long b = (treeSum-rs)*rs;
-        res = Math.max(res, Math.max(a, b));
-        return ls + rs + root.val;
+        
+        long subtreeSum = maxProductRec(root.left, sum) + maxProductRec(root.right, sum) + root.val;
+        
+        long prod = subtreeSum*(sum-subtreeSum);
+        res = Math.max(res, prod);
+        return subtreeSum;
     }
     
     public int maxProduct(TreeNode root) {
-        res = 0L;
-        subtreeSum(root, treeSum(root));
-        return (int)(res % MOD);
+        long sum = sum(root);
+        maxProductRec(root, sum);
+        return (int)(res%MOD);
     }
 }
