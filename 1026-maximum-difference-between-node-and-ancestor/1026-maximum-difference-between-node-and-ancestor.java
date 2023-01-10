@@ -14,50 +14,24 @@
  * }
  */
 class Solution {
-//     private int max_diff;
-//     private class Pair{
-//         public int min;
-//         public int max;
-//         public Pair(int min, int max){
-//             this.min = min;
-//             this.max = max;
-//         }
-//     }
-//     private Pair findMaxDiff(TreeNode root){
-//         if(root.left == null && root.right == null) return new Pair(root.val, root.val);
-//         Pair res = new Pair(Integer.MAX_VALUE, Integer.MIN_VALUE);
-//         if(root.left != null){
-//             Pair ls = findMaxDiff(root.left);
-//             res.min = Math.min(ls.min, root.val);
-//             res.max = Math.max(ls.max, root.val);
-//             max_diff = Math.max(max_diff, Math.max(Math.abs(ls.min-root.val), Math.abs(ls.max-root.val)));
-//         }
-//         if(root.right != null){
-//             Pair rs = findMaxDiff(root.right);
-//             res.min = Math.min(res.min, Math.min(rs.min, root.val));
-//             res.max = Math.max(res.max, Math.max(rs.max, root.val));
-//             max_diff = Math.max(max_diff, Math.max(Math.abs(rs.min-root.val), Math.abs(rs.max-root.val)));
-//         }
-//         return res;
+    
+    int res = Integer.MIN_VALUE;
+    
+    public void maxAncestorDiffRec(TreeNode root, int currMin, int currMax){
+        if(root == null) return;
         
-//     }
-    
-    // public int maxAncestorDiff(TreeNode root) {
-    //     max_diff = Integer.MIN_VALUE;
-    //     findMaxDiff(root);
-    //     return max_diff;
-    // }
-    
-    private int findMaxDiff(TreeNode root, int currMax, int currMin){
-        if(root == null) return currMax - currMin;
-        currMax = Math.max(currMax, root.val);
+        int max = Math.max(Math.abs(root.val-currMin), Math.abs(root.val-currMax));
+        res = Math.max(res, max);
         currMin = Math.min(currMin, root.val);
-        int left = findMaxDiff(root.left, currMax, currMin);
-        int right = findMaxDiff(root.right, currMax, currMin);
-        return Math.max(left, right);
+        currMax = Math.max(currMax, root.val);
+        maxAncestorDiffRec(root.left, currMin, currMax);
+        maxAncestorDiffRec(root.right, currMin, currMax);
+
     }
     
     public int maxAncestorDiff(TreeNode root) {
-        return findMaxDiff(root, root.val, root.val);
+        res = Integer.MIN_VALUE;
+        maxAncestorDiffRec(root, root.val, root.val);
+        return res;
     }
 }
