@@ -14,11 +14,12 @@
  * }
  */
 class Solution {
+    
     int MOD = 1_000_000_007;
     long res = 0L;
-    
     public long sum(TreeNode root){
         if(root == null) return 0;
+        
         return sum(root.left) + sum(root.right) + root.val;
     }
     
@@ -29,10 +30,12 @@ class Solution {
         
         long prod = subtreeSum*(sum-subtreeSum);
         res = Math.max(res, prod);
+        
         return subtreeSum;
-    }
+    } 
     
     public int maxProduct(TreeNode root) {
+        res = 0L;
         long sum = sum(root);
         maxProductRec(root, sum);
         return (int)(res%MOD);
