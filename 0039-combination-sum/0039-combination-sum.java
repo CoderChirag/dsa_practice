@@ -1,26 +1,27 @@
 class Solution {
     
-    public void combinationSumRec(int[] candidates, int target, List<Integer> curr, HashSet<List<Integer>> res){
-        if(target == 0){
+    public void combinationSumRec(int[] candidates, int target, int currSum, int currIndex, List<Integer> curr, List<List<Integer>> res){
+        if(currSum == target){
             List<Integer> al = new ArrayList<>(curr);
-            Collections.sort(al);
             res.add(al);
             return;
         }
         
-        for(int i=0; i<candidates.length; i++){
-            if(target >= candidates[i]){
+        for(int i=currIndex; i<candidates.length; i++){
+            if(currSum+candidates[i] <= target){
                 curr.add(candidates[i]);
-                combinationSumRec(candidates, target-candidates[i], curr, res);
+                currSum += candidates[i];
+                combinationSumRec(candidates, target, currSum, i, curr, res);
                 curr.remove(curr.size()-1);
+                currSum -= candidates[i];
             }
         }
     }
     
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        HashSet<List<Integer>> res = new HashSet<>();
-        combinationSumRec(candidates, target, new ArrayList<>(), res);
-        List<List<Integer>> al = new ArrayList<>(res);
-        return al;
+        Arrays.sort(candidates);
+        List<List<Integer>> res = new ArrayList<>();
+        combinationSumRec(candidates, target, 0, 0, new ArrayList<>(), res);
+        return res;
     }
 }
