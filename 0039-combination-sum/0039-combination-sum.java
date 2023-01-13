@@ -19,7 +19,6 @@ class Solution {
     }
     
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        Arrays.sort(candidates);
         List<List<Integer>> res = new ArrayList<>();
         combinationSumRec(candidates, target, 0, 0, new ArrayList<>(), res);
         return res;
