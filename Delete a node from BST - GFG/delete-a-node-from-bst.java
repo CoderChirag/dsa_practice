@@ -110,16 +110,18 @@ class GfG {
 
 class Tree {
     // Function to delete a node from BST.
+    
     public static Node getSucc(Node root){
         Node curr = root.right;
         while(curr != null && curr.left != null) curr = curr.left;
         return curr;
     }
-    public static Node deleteNode(Node root, int x) {
+    
+    public static Node deleteNode(Node root, int X) {
         // code here.
         if(root == null) return null;
-        if(root.data > x) root.left = deleteNode(root.left, x);
-        else if(root.data < x) root.right = deleteNode(root.right, x);
+        if(X < root.data) root.left = deleteNode(root.left, X);
+        else if(X > root.data) root.right = deleteNode(root.right, X);
         else{
             if(root.left == null) return root.right;
             else if(root.right == null) return root.left;
