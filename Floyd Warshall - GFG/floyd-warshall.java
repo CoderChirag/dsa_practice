@@ -36,7 +36,6 @@ class GFG
 
 //User function template for JAVA
 
-// Time Complexity: O(V^3)
 class Solution
 {
     public void shortest_distance(int[][] matrix)
@@ -48,9 +47,8 @@ class Solution
                 for(int j=0; j<n; j++){
                     if(i != j){
                         if(via == j || matrix[i][via] == -1 || matrix[via][j] == -1) continue;
-                        if(matrix[i][j] == -1 || matrix[i][j] > matrix[i][via] + matrix[via][j]){
-                            matrix[i][j] = matrix[i][via]+matrix[via][j];
-                        }
+                        if(matrix[i][j] == -1 || matrix[i][j] > matrix[i][via] + matrix[via][j])
+                            matrix[i][j] = matrix[i][via] + matrix[via][j];
                     }
                 }
             }
