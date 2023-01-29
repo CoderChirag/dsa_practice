@@ -6,7 +6,7 @@
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>&nbsp; &nbsp; &nbsp;2
 &nbsp;  /&nbsp;&nbsp; \
 &nbsp; 1&nbsp;  &nbsp; 3
@@ -14,11 +14,11 @@ K = 4
 <strong>Output: </strong>1 2 3 4<strong>
 Explanation: </strong>After inserting the node 4
 Inorder traversal will be 1 2 3 4.</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;2
 &nbsp; &nbsp; &nbsp;&nbsp;/&nbsp;&nbsp; \
  &nbsp; &nbsp; 1 &nbsp; &nbsp; 3
@@ -28,7 +28,7 @@ K = 4
 <strong>Output: </strong>1 2 3 4 6<strong>
 Explanation: </strong>After inserting the node 4
 Inorder traversal of the above tree
-will be 1 2 3 4 6.</span></pre>
+will be 1 2 3 4 6.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:</strong><br>
@@ -41,6 +41,6 @@ You don't need to read input or print anything. Your task is to complete the fun
 
 <p><br>
 <span style="font-size:18px"><strong>Constraints:</strong><br>
-1 &lt;= Number of nodes &lt;= 10<sup>5</sup></span><br>
+1 &lt;= Number of nodes initially in BST &lt;= 10<sup>5</sup></span><br>
 <span style="font-size:18px">1 &lt;= K &lt;= 10<sup>6</sup></span></p>
 </div>
