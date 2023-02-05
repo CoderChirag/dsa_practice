@@ -52,46 +52,21 @@ class DriverClass
 // } Driver Code Ends
 
 
-// Time Complexity: O(V*(V + V)) ~ O(V^2)
-// class Solution
-// {
-//     //Function to find the shortest distance of all the vertices
-//     //from the source vertex S.
-//     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
-//     {
-//         // Write your code here
-//         int dist[] = new int[V];
-//         boolean fin[] = new boolean[V];
-//         Arrays.fill(dist, Integer.MAX_VALUE);
-//         dist[S] = 0;
-//         for(int i=0; i<V; i++){
-//             int u = -1;
-//             for(int j=0; j<V; j++){
-//                 if(!fin[j] && (u == -1 || dist[j] < dist[u])) u = j;
-//             }
-//             for(ArrayList<Integer> ele : adj.get(u)){
-//                 dist[ele.get(0)] = Math.min(dist[ele.get(0)], dist[u] + ele.get(1));
-//             }
-//             fin[u] = true;
-//         }
-//         return dist;
-//     }
-// }
+//User function Template for Java
 
 class Pair implements Comparable<Pair>{
-    int dist, node;
-    Pair(int dist, int node){
-        this.dist = dist;
-        this.node = node;
+    int v, d;
+    Pair(int _v, int _d){
+        v = _v;
+        d = _d;
     }
     
     @Override
     public int compareTo(Pair p){
-        return Integer.compare(this.dist, p.dist);
+        return Integer.compare(d, p.d);
     }
 }
 
-// Time Complexity: O(E*logV) (Explained below)
 class Solution
 {
     //Function to find the shortest distance of all the vertices
@@ -100,23 +75,25 @@ class Solution
     {
         // Write your code here
         int dist[] = new int[V];
-        boolean fin[] = new boolean[V];
-        PriorityQueue<Pair> q = new PriorityQueue<>();
-        
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[S] = 0;
-        q.offer(new Pair(0, S));
-        while(!q.isEmpty()){ // Running O(V) times
-            Pair p = q.poll(); // O(logV) Work
-            if(!fin[p.node]){
-                for(ArrayList<Integer> ele : adj.get(p.node)){ // Running k times, where k = no. of edges the current vertex is having
-                    if(!fin[ele.get(0)] && dist[ele.get(0)] > p.dist + ele.get(1)){ // So overall the outer and this loop combined would be running 2E Times
-                        dist[ele.get(0)] =  p.dist + ele.get(1);
-                        q.offer(new Pair(ele.get(1)+p.dist, ele.get(0))); // O(logV)
+        boolean fin[] = new boolean[V];
+        PriorityQueue<Pair> q = new PriorityQueue<>();
+        q.offer(new Pair(S, 0));
+        
+        while(!q.isEmpty()){
+            Pair p = q.poll();
+            int v = p.v, d = p.d;
+            if(!fin[v]){
+                for(ArrayList<Integer> li : adj.get(v)){
+                    int u = li.get(0), w = li.get(1);
+                    if(dist[u] > d + w){
+                        dist[u] = d + w;
+                        q.offer(new Pair(u, d + w));
                     }
                 }
             }
-            fin[p.node] = true;
+            fin[v] = true;
         }
         return dist;
     }
