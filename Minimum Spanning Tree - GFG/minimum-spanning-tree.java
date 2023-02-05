@@ -34,52 +34,49 @@ public class Main{
 // User function Template for Java
 
 class Pair implements Comparable<Pair>{
-    int node, dist;
-    Pair(int n, int d){
-        node = n;
-        dist = d;
+    int v, d;
+    Pair(int _v, int _d){
+        v = _v;
+        d = _d;
     }
     
     @Override
     public int compareTo(Pair p){
-        return Integer.compare(dist, p.dist);
+        return Integer.compare(d, p.d);
     }
 }
 
 class Solution{
 	static int spanningTree(int V, int E, int edges[][]){
-	    // Code Here. 
-	    
-	    ArrayList<ArrayList<ArrayList<Integer>>> adj = new ArrayList<>();
-	    for(int i=0; i<V; i++){
-	        adj.add(new ArrayList<>());
-	    }
-	    
-	    for(int i=0; i<edges.length; i++){
-	        adj.get(edges[i][0]).add(new ArrayList<>(Arrays.asList(edges[i][1], edges[i][2])));
-	        adj.get(edges[i][1]).add(new ArrayList<>(Arrays.asList(edges[i][0], edges[i][2])));
-	    }
-	    
-	    int res = 0;
-	    boolean inMST[] = new boolean[V];
-	    PriorityQueue<Pair> pq = new PriorityQueue<>();
-	    pq.offer(new Pair(0, 0));
-	    
-	    while(!pq.isEmpty()){
-	        Pair p = pq.poll();
-	        int u = p.node, d = p.dist;
-	        
-	        if(!inMST[u]){
-	            res += d;
-	            for(ArrayList<Integer> al : adj.get(u)){
-	                int v = al.get(0), w = al.get(1);
-	                if(!inMST[v]){
-	                    pq.offer(new Pair(v, w));
-	                }
-	            }
-	        }
-	        inMST[u] = true;
-	    }
-	    return res;
+        // Code Here. 
+        ArrayList<ArrayList<ArrayList<Integer>>> adj = new ArrayList<>();
+        
+        for(int i=0; i<V; i++){
+            adj.add(new ArrayList<>());
+        }
+        
+        for(int i=0; i<E; i++){
+            adj.get(edges[i][0]).add(new ArrayList<>(Arrays.asList(edges[i][1], edges[i][2])));
+            adj.get(edges[i][1]).add(new ArrayList<>(Arrays.asList(edges[i][0], edges[i][2])));
+        }
+        
+        int res = 0;
+        boolean inMst[] = new boolean[V];
+        PriorityQueue<Pair> q = new PriorityQueue<>();
+        q.offer(new Pair(0, 0));
+        
+        while(!q.isEmpty()){
+            Pair p = q.poll();
+            int v = p.v, d = p.d;
+            if(!inMst[v]){
+                res += d;
+                for(ArrayList<Integer> li : adj.get(v)){
+                    int u = li.get(0), w = li.get(1);
+                    if(!inMst[u]) q.offer(new Pair(u, w));
+                }
+            }
+            inMst[v] = true;
+        }
+        return res;
 	}
 }
