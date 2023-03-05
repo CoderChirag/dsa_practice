@@ -28,19 +28,31 @@ class Solution {
 //         return uniquePathsRec(0, 0, m, n);
 //     }
     
-    public int uniquePathsRec(int i, int j, int m, int n, int[][] dp){
-        if(i == m-1 && j == n-1){
-            dp[i][j] = 1;
-            return 1;
-        };
-        if(i >= m || j >= n) return 0;
-        if(dp[i][j] != 0) return dp[i][j];
-        dp[i][j] = uniquePathsRec(i, j+1, m, n, dp) + uniquePathsRec(i+1, j, m, n, dp);
-        return dp[i][j];
-    }
+//  Dynamic Programming (Memoization) - O(n*m) Time & O(n*m) Space
+//     public int uniquePathsRec(int i, int j, int m, int n, int[][] dp){
+//         if(i == m-1 && j == n-1){
+//             dp[i][j] = 1;
+//             return 1;
+//         };
+//         if(i >= m || j >= n) return 0;
+//         if(dp[i][j] != 0) return dp[i][j];
+//         dp[i][j] = uniquePathsRec(i, j+1, m, n, dp) + uniquePathsRec(i+1, j, m, n, dp);
+//         return dp[i][j];
+//     }
     
+//     public int uniquePaths(int m, int n) {
+//         int dp[][] = new int[m][n];
+//         return uniquePathsRec(0, 0, m, n, dp);
+//     }
+    
+//  Combinatorics
     public int uniquePaths(int m, int n) {
-        int dp[][] = new int[m][n];
-        return uniquePathsRec(0, 0, m, n, dp);
+        int N = m+n-2;
+        int r = m-1; // Can also be n-1
+        double ncr = 1;
+        for(int i=1; i<=r; i++){
+            ncr = (ncr*(N-r+i))/i;
+        }
+        return (int)ncr;
     }
 }
