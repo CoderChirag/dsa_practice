@@ -24,7 +24,6 @@ class Solution {
         }
         if(c1 > n/3) res.add(n1);
         if(c2 > n/3) res.add(n2);
-        System.out.println(n1 + ": " + c1 + ", " + n2 + ": " + c2);
         return res;
     }
 }
