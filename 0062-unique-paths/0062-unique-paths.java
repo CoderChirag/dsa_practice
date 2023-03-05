@@ -1,5 +1,5 @@
 class Solution {
-//     DFS Based Approach - Memory Limit Exceeded
+//     BFS Based Approach - Memory Limit Exceeded
     // public int uniquePaths(int m, int n) {
     //     ArrayDeque<Integer[]> q = new ArrayDeque<>();
     //     q.offer(new Integer[]{0, 0});
