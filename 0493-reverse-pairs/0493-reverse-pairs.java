@@ -10,6 +10,7 @@ class Solution {
     //     return cnt;
     // }
     
+//  Modified Merge Sort - O(N*logN) Time
     public int merge(int nums[], int l, int mid, int r){
         int temp[] = new int[r-l+1];
         int i = l, j = mid+1, k = 0, count = 0;
