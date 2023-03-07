@@ -33,16 +33,12 @@ class GfG
     {
         // Your code here
         HashMap<Integer, Integer> map = new HashMap<>();
-        int pre[] = new int[n];
-        pre[0] = arr[0];
-        for(int i=1; i<n; i++){
-            pre[i] = pre[i-1] + arr[i];
-        }
-        int res = 0;
+        int sum = 0, res = 0;
         for(int i=0; i<n; i++){
-            if(pre[i] == 0) res = Math.max(res, i+1);
-            else if(map.containsKey(pre[i])) res = Math.max(res, i-map.get(pre[i]));
-            else map.put(pre[i], i);
+            sum += arr[i];
+            if(sum == 0) res = Math.max(res, i+1);
+            else if(map.containsKey(sum)) res = Math.max(res, i-map.get(sum));
+            else map.put(sum, i);
         }
         return res;
     }
