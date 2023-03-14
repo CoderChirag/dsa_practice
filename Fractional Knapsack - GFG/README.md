@@ -7,7 +7,7 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>N = 3, W = 50
 values[] = {60,100,120}
 weight[] = {10,20,30}
@@ -16,11 +16,11 @@ weight[] = {10,20,30}
 Explanation:</strong>Total maximum value of item
 we can have is 240.00 from the given
 capacity of sack. 
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>N = 2, W = 50
 values[] = {60,100}
 weight[] = {10,20}
@@ -29,7 +29,7 @@ weight[] = {10,20}
 Explanation:
 </strong>Total maximum value of item
 we can have is 160.00 from the given
-capacity of sack.</span></pre>
+capacity of sack.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 
