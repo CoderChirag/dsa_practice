@@ -48,17 +48,15 @@ class Solution
     double fractionalKnapsack(int W, Item arr[], int n) 
     {
         // Your code here
-        Arrays.sort(arr, (i1, i2) -> Double.compare((double)i1.weight/i1.value, (double)i2.weight/i2.value));
+        Arrays.sort(arr, (a, b) -> Double.compare((double)b.value/b.weight, (double)a.value/a.weight));
         double res = 0;
-        int curr_weight = 0;
-        for(int i=0; i<n; i++){
-            if(curr_weight == W) return res;
-            if(arr[i].weight <= W-curr_weight){
+        for(int i=0; i<n ;i++){
+            if(W >= arr[i].weight){
                 res += arr[i].value;
-                curr_weight += arr[i].weight;
+                W -= arr[i].weight;
             }else{
-                res += ((double)arr[i].value/arr[i].weight)*(W-curr_weight);
-                curr_weight = W;
+                res += ((double)arr[i].value/arr[i].weight)*W;
+                break;
             }
         }
         return res;
