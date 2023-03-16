@@ -50,9 +50,13 @@ class Solution {
         int N = m+n-2;
         int r = m-1; // Can also be n-1
         double ncr = 1;
-        for(int i=1; i<=r; i++){
-            ncr = (ncr*(N-r+i))/i;
+        // for(int i=1; i<=r; i++){
+        //     ncr = (ncr*(N-r+i))/i;
+        // }
+        for(int i=0; i<N-r; i++){
+            ncr *= (double)(N-i)/(i+1);
         }
-        return (int)ncr;
+        System.out.println(ncr); 
+        return (int)Math.round(ncr);
     }
 }
