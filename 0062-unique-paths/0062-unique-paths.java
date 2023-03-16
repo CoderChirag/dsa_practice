@@ -56,7 +56,6 @@ class Solution {
         for(int i=0; i<N-r; i++){
             ncr *= (double)(N-i)/(i+1);
         }
-        System.out.println(ncr); 
         return (int)Math.round(ncr);
     }
 }
