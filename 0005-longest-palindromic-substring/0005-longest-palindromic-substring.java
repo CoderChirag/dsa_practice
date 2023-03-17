@@ -1,27 +1,27 @@
 class Solution {
     public String longestPalindrome(String s) {
-        int n = s.length();
-        int LPS[] = new int[2*n+1];
-        LPS[0] = 0;
-        int maxLen = 1, maxIndex = 0;
-        for(int i=1; i<2*n+1; i++){
-            int len = i%2 != 0 ? 1 : 0;
-            int left = (i/2)-1, right = i%2 != 0 ? (i/2)+1 : i/2;
-            while(left >=0 && right < n && s.charAt(left) == s.charAt(right)){
-                len += 2;
+        int n = s.length(), start = 0, end = 0;
+        for(int i=0; i<n; i++){
+//             Starting by taking current index as center 
+            int left = i, right = i;
+            while(left >=0 && right<n && s.charAt(left) == s.charAt(right)){
                 left--;
                 right++;
             }
-            LPS[i] = len;
-            if(len > maxLen){
-                maxLen = len;
-                maxIndex = (i-len)/2;
+//             Starting by taking next index as center
+            int len = right - left - 1;
+            left = i;
+            right = i+1;
+            while(left >=0 && right < n && s.charAt(left) == s.charAt(right)){
+                left--;
+                right++;
+            }
+            len = Math.max(len, right-left-1);
+            if(len > end-start){
+                start = i - (len-1)/2;
+                end = i + len/2;
             }
         }
-        String res = "";
-        for(int i=0; i<maxLen; i++){
-            res += s.charAt(i+maxIndex);
-        }
-        return res;
+        return s.substring(start, end+1);
     }
 }
