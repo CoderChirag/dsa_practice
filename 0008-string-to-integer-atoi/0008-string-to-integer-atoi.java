@@ -6,7 +6,6 @@ class Solution {
         for(int i=0; i<s.length(); i++){
             if(i == 0 && (s.charAt(i) == '+' || s.charAt(i) == '-')) continue;
             else if(s.charAt(i) < '0' || s.charAt(i) > '9') break;
-            else if(s.charAt(i) == ' ') continue;
             else{
                 if(ans < Integer.MIN_VALUE || ans > Integer.MAX_VALUE) break;
                 ans = (ans*10) + (int)(s.charAt(i) - '0');
