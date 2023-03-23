@@ -2,28 +2,21 @@ class Solution {
     public int myAtoi(String s) {
         s = s.trim();
         if(s.length() == 0) return 0;
-        int sign = 1, i = 0;
-        int res = 0;
-        if(s.charAt(0) == '-'){
-            sign = -1;
-            i = 1;
-        }else if(s.charAt(0) == '+'){
-            i = 1;
+        long ans = 0;
+        for(int i=0; i<s.length(); i++){
+            if(i == 0 && (s.charAt(i) == '+' || s.charAt(i) == '-')) continue;
+            else if(s.charAt(i) < '0' || s.charAt(i) > '9') break;
+            else if(s.charAt(i) == ' ') continue;
+            else{
+                if(ans < Integer.MIN_VALUE || ans > Integer.MAX_VALUE) break;
+                ans = (ans*10) + (int)(s.charAt(i) - '0');
+            }
         }
-        for(; i < s.length(); i++){
-            int num = s.charAt(i) - '0';
-            if(num >= 0 && num <= 9){
-                if(sign > 0){
-                    if(res <= Integer.MAX_VALUE/10 && (res*10) < Integer.MAX_VALUE-num)
-                        res = res*10 + num;
-                    else return Integer.MAX_VALUE;
-                }else{
-                    if(res*sign >= Integer.MIN_VALUE/10 && (res*10)*sign > Integer.MIN_VALUE+num ) res = res*10 + num;
-                    else return Integer.MIN_VALUE;
-                }
-                
-            }else break;
-        }
-        return res*sign;
+        
+        if(s.charAt(0) == '-') ans = -ans;
+        
+        if(ans < Integer.MIN_VALUE || ans > Integer.MAX_VALUE)
+            return ans < Integer.MIN_VALUE ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+        return (int)ans;
     }
 }
