@@ -17,6 +17,16 @@
 //         return prev;
 //     }
 // }
+// Naive Solution 2 -> O((n-m+1)*m)
+// class Solution {
+//     public int strStr(String haystack, String needle) {
+//         int n = haystack.length(), m = needle.length();
+//         for(int i=0; i<n-m+1; i++){
+//             if(haystack.substring(i, i+m).equals(needle)) return i;
+//         }
+//         return -1;
+//     }
+// }
 
 // Rabin Karp Algorithm - O((n-m+1)*m) but better than Naive Solution
 // class Solution {
@@ -129,11 +139,29 @@
 
 
 class Solution {
+    private int BASE = 256, MOD = 101; // BASE = d, MOD = q
     public int strStr(String haystack, String needle) {
         int n = haystack.length(), m = needle.length();
+        if(m > n) return -1;
+        int pow = 1; // pow = h, ie, ((d^(m-1))%q)
+        for(int i=1; i<m; i++){
+            pow = (pow*BASE)%MOD;     // Calculating (d^(m-1))%q
+        }
+        
+        int pattern_hash = 0, text_hash = 0;
+        for(int i=0; i<m; i++){
+            pattern_hash = (pattern_hash*BASE + needle.charAt(i))%MOD;
+            text_hash = (text_hash*BASE + haystack.charAt(i))%MOD;
+        }
+        
         for(int i=0; i<n-m+1; i++){
-            if(haystack.substring(i, i+m).equals(needle)) return i;
+            if(text_hash == pattern_hash && haystack.substring(i, i+m).equals(needle)) return i; // Check for hash match & spurious hit
+            if(i < n-m){ // Every time we calculate paatern hash for the (i+1)th window, and we don't have any (n-m+1)th window.
+                text_hash = (BASE*(text_hash - pow*haystack.charAt(i)) + haystack.charAt(i+m))%MOD;
+                if(text_hash < 0) text_hash += MOD;
+            }
         }
         return -1;
+        
     }
 }
