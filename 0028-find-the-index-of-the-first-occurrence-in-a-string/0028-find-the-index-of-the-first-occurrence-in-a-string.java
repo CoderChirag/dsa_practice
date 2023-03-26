@@ -90,40 +90,50 @@
 // }
 
 // Z Algorithm - O(n+m) By creating Z array - 
+// class Solution {
+//     public void fillZArray(String s, int Z[]){
+//         int n = s.length();
+//         Z[0] = 0;
+//         int l = 0, r = 0;
+//         for(int i=1; i<n; i++){
+//             if(i > r){
+//                 l = r = i;
+//                 while(r < n && s.charAt(r-l) == s.charAt(r)) r++;
+//                 Z[i] = r-l;
+//                 r--;
+//             }else{
+//                 int k = i-l;
+//                 if(Z[k] < r-i+1) Z[i] = Z[k];
+//                 else{
+//                     l = i;
+//                     while(r < n && s.charAt(r-l) == s.charAt(r)) r++;
+//                     Z[i] = r-l;
+//                     r--;
+//                 }
+//             }
+//         }
+//     }
+//     public int strStr(String haystack, String needle) {
+//         int n = haystack.length(), m = needle.length();
+//         String s = needle + "_" + haystack;
+//         int l = s.length();
+//         int Z[] = new int[l];
+//         fillZArray(s, Z);
+//         for(int i=0; i<l; i++){
+//             System.out.print(Z[i] + " ");
+//             if(Z[i] == m) return i-m-1;
+//         }
+//         return -1;
+//     }
+// }
+
+
 class Solution {
-    public void fillZArray(String s, int Z[]){
-        int n = s.length();
-        Z[0] = 0;
-        int l = 0, r = 0;
-        for(int i=1; i<n; i++){
-            if(i > r){
-                l = r = i;
-                while(r < n && s.charAt(r-l) == s.charAt(r)) r++;
-                Z[i] = r-l;
-                r--;
-            }else{
-                int k = i-l;
-                if(Z[k] < r-i+1) Z[i] = Z[k];
-                else{
-                    l = i;
-                    while(r < n && s.charAt(r-l) == s.charAt(r)) r++;
-                    Z[i] = r-l;
-                    r--;
-                }
-            }
-        }
-    }
     public int strStr(String haystack, String needle) {
         int n = haystack.length(), m = needle.length();
-        String s = needle + "_" + haystack;
-        int l = s.length();
-        int Z[] = new int[l];
-        fillZArray(s, Z);
-        for(int i=0; i<l; i++){
-            System.out.print(Z[i] + " ");
-            if(Z[i] == m) return i-m-1;
+        for(int i=0; i<n-m+1; i++){
+            if(haystack.substring(i, i+m).equals(needle)) return i;
         }
         return -1;
     }
 }
-
