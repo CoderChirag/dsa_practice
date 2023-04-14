@@ -130,22 +130,25 @@ class Node
 
 class Solution{
     //Function to return list containing elements of right view of binary tree.
+    
     int max_level = 0;
-    void rightViewRec(Node root, ArrayList<Integer> res, int level){
-        if(root == null) return;
+    ArrayList<Integer> res;
+    
+    void postOrder(Node node, int level){
+        if(node == null) return;
         if(level > max_level){
             max_level = level;
-            res.add(root.data);
+            res.add(node.data);
         }
-        rightViewRec(root.right, res, level+1);
-        rightViewRec(root.left, res, level+1);
+        postOrder(node.right, level+1);
+        postOrder(node.left, level+1);
     }
     
     ArrayList<Integer> rightView(Node node) {
         //add code here.
-        ArrayList<Integer> res = new ArrayList<>();
         max_level = 0;
-        rightViewRec(node, res, 1);
+        res = new ArrayList<>();
+        postOrder(node, 1);
         return res;
     }
 }
