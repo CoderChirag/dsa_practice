@@ -127,9 +127,9 @@ class Node{
 class Pair{
     Node node;
     int score;
-    Pair(Node node, int score){
-        this.node = node;
-        this.score = score;
+    Pair(Node n, int s){
+        node = n;
+        score = s;
     }
 }
 
@@ -141,24 +141,22 @@ class Solution
     {
         // add your code
         ArrayList<Integer> res = new ArrayList<>();
-        HashMap<Integer, Integer> map = new HashMap<>();
         ArrayDeque<Pair> q = new ArrayDeque<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         int min_score = 0, max_score = 0;
-        q.offer(new Pair(root, 0));
         
+        q.offer(new Pair(root, 0));
         while(!q.isEmpty()){
             Pair p = q.poll();
             if(p.score < min_score) min_score = p.score;
             else if(p.score > max_score) max_score = p.score;
             
             map.put(p.score, map.getOrDefault(p.score, p.node.data));
-            
             if(p.node.left != null) q.offer(new Pair(p.node.left, p.score-1));
             if(p.node.right != null) q.offer(new Pair(p.node.right, p.score+1));
         }
-        for(int i=min_score; i<=max_score; i++){
-            res.add(map.get(i));
-        }
+        for(int i=min_score; i<=max_score; i++) res.add(map.get(i));
+        
         return res;
     }
 }
