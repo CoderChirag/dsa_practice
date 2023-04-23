@@ -8,7 +8,7 @@ class Solution {
                 nums[low++] = nums[mid];
                 nums[mid++] = temp;
             }else if(nums[mid] == 1) mid++;
-            else{
+            else if(nums[mid] == 2){
                 int temp = nums[high];
                 nums[high--] = nums[mid];
                 nums[mid] = temp;
