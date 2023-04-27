@@ -3,17 +3,17 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> intervals = [[1,3],[2,6],[8,10],[15,18]]
+<pre style="position: relative;"><strong>Input:</strong> intervals = [[1,3],[2,6],[8,10],[15,18]]
 <strong>Output:</strong> [[1,6],[8,10],[15,18]]
 <strong>Explanation:</strong> Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> intervals = [[1,4],[4,5]]
+<pre style="position: relative;"><strong>Input:</strong> intervals = [[1,4],[4,5]]
 <strong>Output:</strong> [[1,5]]
 <strong>Explanation:</strong> Intervals [1,4] and [4,5] are considered overlapping.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
