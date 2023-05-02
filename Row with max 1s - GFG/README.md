@@ -4,7 +4,7 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input: 
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input: 
 </strong>N = 4 , M = 4
 Arr[][] = {{0, 1, 1, 1},
            {0, 0, 1, 1},
@@ -13,18 +13,18 @@ Arr[][] = {{0, 1, 1, 1},
 <strong>Output:</strong> 2
 <strong>Explanation:</strong> Row 2 contains <strong>4</strong> 1's (0-based
 indexing).
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong> 
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong> 
 N = 2, M = 2
 Arr[][] = {{0, 0}, {1, 1}}
 <strong>Output:</strong> 1
 <strong>Explanation:</strong> Row 1 contains <strong>2</strong> 1's (0-based
 indexing).
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
