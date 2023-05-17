@@ -44,7 +44,7 @@ class Solution {
   public static double findSmallestMaxDist(int stations[],int K) {
     // code here
     double l = 0, r = 1e9;
-    double eps = 1e-5;
+    double eps = 1e-8;
     double res = -1;
     for(int i=1; i<stations.length; i++){
         l = Math.min(l, stations[i]-stations[i-1]);
