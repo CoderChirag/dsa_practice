@@ -1,23 +1,20 @@
-function rec(n: number, nums: number[], dp: number[]){
-    if(dp[n] !== -1) return dp[n];
-    if(n === 0){
-        dp[0] = nums[0];
-        return nums[0];
-    };
-    let max_res = Number.MIN_VALUE;
-    for(let i=n-2; i>=0; i--){
-        max_res = Math.max(max_res, rec(i, nums, dp) + nums[n]);
-    }
-    const res = max_res === Number.MIN_VALUE ? nums[n] : max_res;
-    dp[n] = res;
-    return res;
-}
+// function rec(n: number, nums: number[], dp: number[]){
+//     if(n < 0){
+//         return 0;
+//     };
+//     if(dp[n] !== -1) return dp[n];
+//     const pick = rec(n-2, nums, dp) + nums[n];
+//     const nonPick = rec(n-1, nums, dp);
+//     dp[n] = Math.max(pick, nonPick);
+//     return Math.max(pick, nonPick);
+// }
 
 function rob(nums: number[]): number {
-    let max = Number.MIN_VALUE;
-    let dp = new Array(nums.length).fill(-1);
-    for(let i=nums.length-1; i>=0; i--){
-        max = Math.max(max, rec(i, nums, dp));
+    let dp = new Array(nums.length+1).fill(-1);
+    dp[0] = nums[0];
+    dp[1] = Math.max(nums[0], nums[1]);
+    for(let i=2; i<nums.length; i++){
+        dp[i] = Math.max(nums[i] + dp[i-2], dp[i-1]);
     }
-    return max;
+    return dp[nums.length-1];
 };
