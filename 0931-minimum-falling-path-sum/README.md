@@ -5,17 +5,17 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 <img alt="" src="https://assets.leetcode.com/uploads/2021/11/03/failing1-grid.jpg" style="width: 499px; height: 500px;">
-<pre style="position: relative;"><strong>Input:</strong> matrix = [[2,1,3],[6,5,4],[7,8,9]]
+<pre><strong>Input:</strong> matrix = [[2,1,3],[6,5,4],[7,8,9]]
 <strong>Output:</strong> 13
 <strong>Explanation:</strong> There are two falling paths with a minimum sum as shown.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 2:</strong></p>
 <img alt="" src="https://assets.leetcode.com/uploads/2021/11/03/failing2-grid.jpg" style="width: 164px; height: 365px;">
-<pre style="position: relative;"><strong>Input:</strong> matrix = [[-19,57],[-40,-5]]
+<pre><strong>Input:</strong> matrix = [[-19,57],[-40,-5]]
 <strong>Output:</strong> -59
 <strong>Explanation:</strong> The falling path with a minimum sum is shown.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
